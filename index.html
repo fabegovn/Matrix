@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Matrix Maze — a cheerful path-finding game for young explorers."
+    />
+    <meta name="theme-color" content="#6c55db" />
+    <title>Matrix</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Matrix Maze home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </span>
+          <span>Matrix</span>
+        </a>
+
+        <div class="top-actions">
+          <button class="round-button" id="soundButton" type="button" aria-label="Turn sound off">
+            <svg class="sound-on-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 5 6.7 8.5H3.5v7h3.2L11 19V5Z" />
+              <path d="M15 9.2a4 4 0 0 1 0 5.6M17.8 6.5a7.8 7.8 0 0 1 0 11" />
+            </svg>
+            <svg class="sound-off-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 5 6.7 8.5H3.5v7h3.2L11 19V5Z" />
+              <path d="m15.5 9 5 5M20.5 9l-5 5" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+
+        <section class="game-layout" aria-label="Maze game">
+          <section class="maze-card">
+            <div class="maze-toolbar">
+              <div>
+                <span class="level-kicker" id="levelKicker">Level 1</span>
+                <h2 id="levelName">Little Loop</h2>
+              </div>
+              <button class="reset-button" id="resetButton" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.9 8.5A8 8 0 1 1 4 14M4 5v5h5" />
+                </svg>
+                Start over
+              </button>
+            </div>
+
+            <div class="maze-wrap">
+              <canvas id="mazeCanvas" aria-label="Interactive maze"></canvas>
+              <div class="start-label" id="startLabel">IN</div>
+              <div class="finish-label" id="finishLabel">OUT</div>
+              <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+            </div>
+
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="helpModal">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+      <div class="modal-icon">🧭</div>
+      <h2>How to play</h2>
+      <p>Help the explorer travel from the green <strong>IN</strong> flag to the purple <strong>OUT</strong> flag.</p>
+      <ul>
+        <li>Move your mouse through a neighboring space—no clicking needed.</li>
+        <li>On a phone or tablet, drag your finger through the maze.</li>
+        <li>Walls will give you a friendly little bump.</li>
+        <li>Your colorful route stays visible to help you remember.</li>
+        <li>Reach OUT and a brand-new random maze will appear!</li>
+      </ul>
+      <button class="primary-button" type="button" data-close-modal>Let’s explore!</button>
+    </dialog>
+
+    <dialog class="modal celebration-modal" id="winModal">
+      <div class="modal-icon celebration-icon">🎉</div>
+      <span class="success-label">Maze complete!</span>
+      <h2 id="winTitle">Amazing teamwork!</h2>
+      <p id="winMessage">You found the way out. Give each other a high five!</p>
+      <div class="stars" aria-label="Three stars">★ ★ ★</div>
+      <button class="primary-button" id="nextButton" type="button">Next matrix →</button>
+      <button class="text-button" id="replayButton" type="button">Play this one again</button>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
