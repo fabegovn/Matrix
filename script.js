@@ -11,12 +11,34 @@ const winMessage = document.getElementById("winMessage");
 const nextButton = document.getElementById("nextButton");
 const confettiLayer = document.getElementById("confettiLayer");
 
+// iOS Safari may still zoom on a rapid second tap even when viewport zoom is disabled.
+let lastTouchEnd = 0;
+document.addEventListener(
+  "touchend",
+  (event) => {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  },
+  { passive: false },
+);
+
+document.addEventListener(
+  "gesturestart",
+  (event) => {
+    event.preventDefault();
+  },
+  { passive: false },
+);
+
 const difficulties = [
-  { name: "Little Loop", rows: 5, cols: 9, color: "#6c55db" },
-  { name: "Zigzag Garden", rows: 6, cols: 10, color: "#36cda0" },
-  { name: "Bouncy Bridges", rows: 7, cols: 11, color: "#55b6e9" },
-  { name: "Twisty Trail", rows: 8, cols: 12, color: "#ff9d4d" },
-  { name: "Mega Matrix", rows: 9, cols: 13, color: "#ff766d" },
+  { name: "Little Loop", rows: 9, cols: 5, color: "#6c55db" },
+  { name: "Zigzag Garden", rows: 10, cols: 6, color: "#36cda0" },
+  { name: "Bouncy Bridges", rows: 11, cols: 7, color: "#55b6e9" },
+  { name: "Twisty Trail", rows: 12, cols: 8, color: "#ff9d4d" },
+  { name: "Mega Matrix", rows: 13, cols: 9, color: "#ff766d" },
 ];
 
 let matrixNumber = 1;
@@ -374,7 +396,6 @@ function launchConfetti() {
   }, 2600);
 }
 
-document.getElementById("resetButton").addEventListener("click", () => loadMatrix());
 document.querySelectorAll("[data-close-modal]").forEach((button) => {
   button.addEventListener("click", () => button.closest("dialog").close());
 });
